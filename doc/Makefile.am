@@ -2,13 +2,10 @@
 	logme
 
 EXTRA_DIST = \
-	grop.desktop \
 	porg.png \
 	porg.spec \
 	download.png \
-	index.html \
-	grop.svg \
-	grop.png
+	index.html
 
 man_MANS = \
 	porg.8 \
@@ -30,34 +27,6 @@ logme_files = \
 	$(DESTDIR)$(pkgdatadir)/index.html \
 	$(DESTDIR)$(pkgdatadir)/porg.png \
 	$(DESTDIR)$(pkgdatadir)/download.png
-
-if ENABLE_GROP
-
-grop_apps_DATA = \
-	grop.desktop
-
-grop_appsdir = \
-	$(DESTDIR)$(datadir)/applications
-	
-grop_icons_DATA = \
-	grop.png
-
-grop_iconsdir = \
-	$(DESTDIR)$(datadir)/pixmaps
-
-logme_files += \
-	$(grop_appsdir)/grop.desktop \
-	$(grop_iconsdir)/grop.png
-
-porg_icon_path = \
-	$(grop_iconsdir)/grop.png
-
-else
-
-porg_icon_path = \
-	$(DESTDIR)$(pkgdatadir)/porg.png
-
-endif
 
 logdir = \
     $(DESTDIR)@LOGDIR@

@@ -22,7 +22,6 @@ AC_CONFIG_FILES([ \
 	lib/porg/Makefile \
 	lib/porg-log/Makefile \
 	porg/Makefile \
-	grop/Makefile \
 	scripts/Makefile \
 	scripts/paco2porg \
 	scripts/porgball \
@@ -39,13 +38,6 @@ AC_USE_SYSTEM_EXTENSIONS
 #=======================
 # Set configure options
 #=======================
-
-if echo "$PACKAGE_VERSION" | grep -q svn; then
-	AC_DEFINE([GTK_DISABLE_DEPRECATED], [1], [Disable gtkmm-2.4 API])
-else
-	AC_DEFINE([NDEBUG], [1], [Disable libc assertions])
-##	AC_DEFINE([G_DISABLE_ASSERT], [1], [Disable glib assertions])
-fi
 
 AC_DEFINE_UNQUOTED([RELEASEDATE], ["$RELEASEDATE"], [Release date])
 AC_SUBST([RELEASEDATE])
@@ -64,12 +56,6 @@ AC_ARG_WITH([porg-logdir],
 AC_DEFINE_UNQUOTED([LOGDIR], ["$LOGDIR"], [Default porg logs directory])
 AC_SUBST([LOGDIR])
 
-AC_ARG_ENABLE([grop],
-	AS_HELP_STRING([--disable-grop],[do not install grop (the GUI of porg)]),
-	[enable_grop=$enableval], [enable_grop=yes])
-AM_CONDITIONAL([ENABLE_GROP], [test "$enable_grop" = yes])
-
-
 #================
 # Check programs
 #================
@@ -86,11 +72,6 @@ AC_PROG_CXX
 #============
 
 AC_SEARCH_LIBS([dlopen], [dl], [], AC_MSG_ERROR([*** dlopen not found ***]))
-
-if test "$enable_grop" = yes; then
-	PKG_CHECK_MODULES([GTKMM], [gtkmm-3.0 >= 3.4.0])
-fi
-
 
 #===============
 # Check headers

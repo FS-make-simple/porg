@@ -6,7 +6,6 @@ ACLOCAL_AMFLAGS = -I build
 SUBDIRS = \
 	lib \
 	porg \
-	grop \
 	doc \
 	scripts
 
